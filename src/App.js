@@ -25,6 +25,9 @@ class App extends Component {
   }
   performSearch(){
     console.log("Perform search using movieDb")
+    $.ajax({
+      
+    })
   }
   render() {
     return (
