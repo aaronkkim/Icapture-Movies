@@ -4,13 +4,23 @@ import MovieRow from './movieRow.js'
 import $ from 'jquery'
 
 class App extends Component {
+  state ={movies:[]}
   constructor(props){
     super(props)
     this.state ={}
+   
   }
-
+  componentDidMount(){
+    fetch('/display')
+    .then(res=>res.json())
+    .then(response => {
+      console.log(response); 
+    }
+    )
+  .then(movies=> this.setState({movies}))}
   performSearch(searchTerm){
     console.log("Perform search using movieDb")
+    
     const urlString = "https://api.themoviedb.org/3/search/movie?api_key=4fba833d14a0e854b19fc2ba5dc2f8bc&query=" +searchTerm
     $.ajax({
       url: urlString,
@@ -33,6 +43,8 @@ class App extends Component {
       }
     })
   }
+ 
+  
   searchChangeHandler(event){
     console.log(event.target.value)
     const searchTerm = event.target.value
@@ -41,7 +53,10 @@ class App extends Component {
   render() {
     return (
       <div >
-        
+        {/* <ul>
+         {this.state.movies.map(movie=>
+          <li>  {movie.title}</li>)}
+       </ul>  */}
         <table className="titleBar"> 
           <tbody>
             <tr>
